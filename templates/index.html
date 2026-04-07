@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmEnv AI 🌾</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>🌾 FarmEnv AI</h1>
+        <p>Real-World OpenEnv Environment for AI Agent Learning</p>
+    </div>
+
+    <div class="main">
+        <div class="stats-row">
+            <div class="stat-card">
+                <p class="stat-label">Episode</p>
+                <h2 class="stat-value" id="episode">0</h2>
+            </div>
+            <div class="stat-card">
+                <p class="stat-label">Best Reward</p>
+                <h2 class="stat-value" id="best-reward">0</h2>
+            </div>
+            <div class="stat-card">
+                <p class="stat-label">Epsilon</p>
+                <h2 class="stat-value" id="epsilon">1.0</h2>
+            </div>
+            <div class="stat-card">
+                <p class="stat-label">Last Reward</p>
+                <h2 class="stat-value" id="last-reward">0</h2>
+            </div>
+        </div>
+
+        <div class="content-row">
+            <div class="card">
+                <h3 class="card-title">🌱 Farm State</h3>
+                <div class="farm-visual" id="farm-visual">
+                    🌱
+                </div>
+                <div class="state-grid">
+                    <div class="state-item">
+                        <p class="state-label">Day</p>
+                        <p class="state-value" id="day">0</p>
+                    </div>
+                    <div class="state-item">
+                        <p class="state-label">Weather</p>
+                        <p class="state-value" id="weather">sunny</p>
+                    </div>
+                    <div class="state-item">
+                        <p class="state-label">Water Level</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill blue"
+                                id="water-bar"></div>
+                        </div>
+                        <p class="state-value" id="water">0%</p>
+                    </div>
+                    <div class="state-item">
+                        <p class="state-label">Soil Health</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill green"
+                                id="soil-bar"></div>
+                        </div>
+                        <p class="state-value" id="soil">0%</p>
+                    </div>
+                    <div class="state-item">
+                        <p class="state-label">Pest Level</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill red"
+                                id="pest-bar"></div>
+                        </div>
+                        <p class="state-value" id="pest">0%</p>
+                    </div>
+                    <div class="state-item">
+                        <p class="state-label">Growth Stage</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill yellow"
+                                id="growth-bar"></div>
+                        </div>
+                        <p class="state-value" id="growth">0</p>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <h3 class="card-title">Manual Actions</h3>
+                    <div class="actions-grid">
+                        <button class="action-btn water"
+                            onclick="takeAction(0)">
+                            💧 Water
+                        </button>
+                        <button class="action-btn fertilize"
+                            onclick="takeAction(1)">
+                            🌿 Fertilize
+                        </button>
+                        <button class="action-btn pesticide"
+                            onclick="takeAction(2)">
+                            🔫 Pesticide
+                        </button>
+                        <button class="action-btn nothing"
+                            onclick="takeAction(3)">
+                            ⏸ Nothing
+                        </button>
+                        <button class="action-btn harvest"
+                            onclick="takeAction(4)">
+                            🌾 Harvest
+                        </button>
+                        <button class="action-btn reset-btn"
+                            onclick="resetEnv()">
+                            🔄 Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">🤖 AI Agent Training</h3>
+                <button class="train-btn" id="train-btn"
+                    onclick="trainAgent()">
+                    ▶ Run Agent Episode
+                </button>
+                <button class="train-btn auto-btn"
+                    id="auto-btn" onclick="autoTrain()">
+                    ⚡ Auto Train (10 Episodes)
+                </button>
+
+                <div class="reward-chart">
+                    <h4>Reward History</h4>
+                    <div class="chart-bars" id="chart-bars"></div>
+                </div>
+
+                <div class="log-section">
+                    <h4>Agent Action Log</h4>
+                    <div class="log-box" id="log-box">
+                        Waiting for agent to run...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h3 class="card-title">📋 API Reference</h3>
+            <div class="api-grid">
+                <div class="api-item">
+                    <span class="api-method">POST</span>
+                    <span class="api-endpoint">/reset</span>
+                    <span class="api-desc">Reset environment</span>
+                </div>
+                <div class="api-item">
+                    <span class="api-method">POST</span>
+                    <span class="api-endpoint">/step</span>
+                    <span class="api-desc">Take action → get state, reward, done</span>
+                </div>
+                <div class="api-item">
+                    <span class="api-method">GET</span>
+                    <span class="api-endpoint">/state</span>
+                    <span class="api-desc">Get current state</span>
+                </div>
+                <div class="api-item">
+                    <span class="api-method">POST</span>
+                    <span class="api-endpoint">/agent/run</span>
+                    <span class="api-desc">Run one agent episode</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>FarmEnv AI — OpenEnv Environment | TechMinds Team</p>
+        <div class="footer-status">
+            <div class="dot"></div>
+            <span>Environment Active</span>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
