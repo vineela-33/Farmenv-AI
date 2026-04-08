@@ -1,7 +1,0 @@
-name: Farmenv-AI
-version: "1.0"
-
-endpoints:
-  reset: /reset
-  step: /step
-  state: /state
