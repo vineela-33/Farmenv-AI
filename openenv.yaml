@@ -1,18 +1,6 @@
 name: Farmenv-AI
-version: "1.0"
-
-env:
-  python: 3.10
-
-endpoints:
-  reset:
-    path: /reset
-    method: POST
-
-  step:
-    path: /step
-    method: POST
-
-  state:
-    path: /state
-    method: GET
+version: 1.0.0
+environment:
+  class_path: farm_env.FarmEnv
+inference:
+  handler: inference.predict
