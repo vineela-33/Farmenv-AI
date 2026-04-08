@@ -1,6 +1,0 @@
-name: Farmenv-AI
-version: 1.0.0
-environment:
-  class_path: farm_env.FarmEnv
-inference:
-  handler: inference.predict
