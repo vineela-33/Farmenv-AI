@@ -19,10 +19,10 @@ def home():
 
 @app.route("/reset", methods=["POST"])
 def reset():
-    state = env.reset()
+    observation = env.reset()
     return jsonify({
-        "success": True,
-        "state": state
+        "observation": observation,
+        "success": True
     })
 
 @app.route("/step", methods=["POST"])
@@ -31,11 +31,19 @@ def step():
     action = data.get("action", 3)
     state, reward, done, info = env.step(action)
     return jsonify({
-        "success": True,
-        "state": state,
+        "observation": state,
         "reward": round(reward, 2),
         "done": done,
-        "info": info
+        "error": None,
+        "info": info,
+        "success": True
+    })
+
+@app.route("/state", methods=["GET"])
+def get_state():
+    return jsonify({
+        "observation": env.get_state(),
+        "success": True
     })
 
 @app.route("/agent/run", methods=["POST"])
@@ -59,13 +67,6 @@ def agent_run():
         "reward_history": reward_history[-20:]
     })
 
-@app.route("/state", methods=["GET"])
-def get_state():
-    return jsonify({
-        "success": True,
-        "state": env.get_state()
-    })
-
 @app.route("/stats", methods=["GET"])
 def get_stats():
     return jsonify({
@@ -78,4 +79,4 @@ def get_stats():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 7860))
-app.run(host="0.0.0.0", port=port, debug=False)
+    app.run(host="0.0.0.0", port=port, debug=False)
