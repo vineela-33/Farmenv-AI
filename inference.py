@@ -170,3 +170,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+def predict(obs, config=None):
+    return 0
