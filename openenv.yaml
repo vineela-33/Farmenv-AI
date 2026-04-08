@@ -1,8 +1,15 @@
-name: FarmEnv-AI
+name: Farmenv-AI
 version: "1.0"
-description: Smart Farm OpenEnv environment for AI agent learning
-repo: https://github.com/vineela-33/Farmenv-AI
-space: https://huggingface.co/spaces/vineela-n/Farmenv-AI
+
+python: 3.10
+
+dependencies:
+  - pip:
+      - flask
+      - numpy
+      - pandas
+      - scikit-learn
+      - openai
 
 endpoints:
   reset: /reset
