@@ -1,7 +1,18 @@
 name: Farmenv-AI
 version: "1.0"
 
+env:
+  python: 3.10
+
 endpoints:
-  reset: /reset
-  step: /step
-  state: /state
+  reset:
+    path: /reset
+    method: POST
+
+  step:
+    path: /step
+    method: POST
+
+  state:
+    path: /state
+    method: GET
