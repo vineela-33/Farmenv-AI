@@ -2,5 +2,12 @@ name: Farmenv-AI
 version: 1.0.0
 environment:
   class_path: farm_env.FarmEnv
+  obs_space:
+    type: Box
+    shape: [4]
+  action_space:
+    type: Discrete
+    n: 4
 inference:
   handler: inference.predict
+  max_steps: 8
