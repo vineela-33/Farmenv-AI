@@ -1,6 +1,25 @@
-name: Farmenv-AI
-version:1.0.0
-environment:
-    class_path: farm_env.FarmEnv
-inference:
-     handler: inference.predict
+env_id: farmenv-ai
+version: "1.0.0"
+description: "Farm AI environment"
+
+tasks:
+  - id: task_easy
+    difficulty: easy
+    max_steps: 10
+    grader:
+      type: llm
+      prompt_template: "Score the farm management performance 0.0 to 1.0..."
+
+  - id: task_medium
+    difficulty: medium
+    max_steps: 15
+    grader:
+      type: llm
+      prompt_template: "Score the farm management performance 0.0 to 1.0..."
+
+  - id: task_hard
+    difficulty: hard
+    max_steps: 20
+    grader:
+      type: llm
+      prompt_template: "Score the farm management performance 0.0 to 1.0..."
