@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.backends.legacy:build"
 
 [project]
-name = "farmenv-ai"
+name = "farmenv-ai-openenv"
 version = "1.0.0"
 description = "OpenEnv Smart Farm environment for AI agent learning"
 requires-python = ">=3.10"
@@ -17,7 +17,7 @@ dependencies = [
 ]
 
 [tool.openenv]
-name = "farmenv-ai"
+name = "farmenv-ai-openenv"
 version = "1.0.0"
 entry_point = "app.py"
 endpoints = {reset = "/reset", step = "/step", state = "/state"}
